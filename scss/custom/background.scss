@@ -1,0 +1,23 @@
+// .slide.current-exhibtion {
+//   .content {
+//     background-color: rgba(0,0,0,.5);
+//   }
+  
+//   @include media($phablet, min) {
+//     h1, h2, h3, h4 { color: #333; }
+//     .content {
+//       background-color: rgba(0,0,0,0);
+//     }
+//   }
+// }
+// .current.background {
+//   background-color: #fff;
+//   background-position: 100% 0;
+//   background-repeat: no-repeat;
+//   background-size: inherit;
+// }
+
+.exhibition-image {
+  max-height: 80vh;
+  width: auto;
+}
