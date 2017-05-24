@@ -38,13 +38,12 @@ gulp.task('scripts', function () {
     /* Add your JS files here, they will be combined in this order */
     // 'js/vendor/jquery-1.11.1.js',
     './src/js/slides.min.js',
-    '.src/js/custom.js'
+    './src/js/custom.js'
   ])
     .pipe(concat('main.js'))
-    .pipe(gulp.dest('js'))
     .pipe(rename({suffix: '.min'}))
     .pipe(uglify())
-    .pipe(gulp.dest('js'));
+    .pipe(gulp.dest('./dist/js'))
 });
 
 /* Sass task */
