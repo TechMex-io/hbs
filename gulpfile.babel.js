@@ -96,17 +96,20 @@ gulp.task('browser-sync', function () {
 gulp.task('serve', function () {
   browserSync.init({
     server: {
-      baseDir: './'
+      baseDir: './dist'
     }
   });
 });
 
+
+gulp.task('watch', () => {
+  /* Watch scss, run the sass task on change. */
+  gulp.watch(['./src/scss/*.scss', './src/scss/**/*.scss'], ['sass'])
+  /* Watch app.js file, run the scripts task on change. */
+  gulp.watch(['./src/js/custom.js'], ['scripts'])
+  /* Watch .html files, run the bs-reload task on change. */
+  gulp.watch(['./src/views/**/*'], ['hbs', 'bs-reload']);
+})
+
 /* Watch scss, js and html files, doing different things with each. */
-gulp.task('default', ['sass', 'serve'], function () {
-    /* Watch scss, run the sass task on change. */
-    gulp.watch(['scss/*.scss', 'scss/**/*.scss', 'custom/*.scss'], ['sass'])
-    /* Watch app.js file, run the scripts task on change. */
-    gulp.watch(['js/custom.js', 'js/main.js'], ['scripts'])
-    /* Watch .html files, run the bs-reload task on change. */
-    gulp.watch(['*.html'], ['bs-reload']);
-});
+gulp.task('default', ['sass', 'watch', 'serve']);

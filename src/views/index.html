@@ -11,30 +11,14 @@
 		<!-- Fonts and Material Icons -->
     <!--<link href="https://fonts.googleapis.com/css?family=Questrial" rel="stylesheet">-->
 		<link href="https://fonts.googleapis.com/css?family=Inder|NTR" rel="stylesheet">
-
-    <link href='fc/fullcalendar.min.css' rel='stylesheet' />
-    <link href='fc/fullcalendar.print.min.css' rel='stylesheet' media='print' />
     
 		<!-- Styles -->
 		<link href="css/styles.css" rel="stylesheet" type="text/css">
-    <style>
-      #calendar {
-        max-width: 800px;
-        margin: 0 auto;
-      }
-    </style>
-
+    
 	</head>
 	<body class="slides bounce fast smoothScroll animated">
 
-    <div class="entry">
-      {{!-- only output author name if an author exists --}}
-        {{#if author}}
-        <h1>{{author.firstName}} {{author.lastName}}</h1>
-        {{ else }}
-        <h1>HBS is working</h1>
-      {{/if}}
-    </div>
+    
 		
 
 <!-- SVG Library -->
@@ -110,224 +94,138 @@
 </svg>
 
 
-<nav class="panel top forceMobileView main-nav">
-  <div class="sections desktop">
-    <div class="left">
-      <h1 class="home-link"><a href="#home">BAM</a></h1>
-    </div>
-    <div class="right">
-      <ul class="menu crop">
-        <li><a href="#exhibition">Current Exhibition</a></li>
-        <li><a href="http://11-11studios.com/bam/2017%20TAE%20Entry%20Form.pdf" target="_blank">Call for Entries</a></li>
-        <li><a href="#contact">Contact</a></li>
-        <li><a href="https://www.facebook.com/Beeville-Art-Museum-103515313030905/" target="_blank"><svg class="facebookIcon"><use xlink:href="#facebook" xmlns:xlink="http://www.w3.org/1999/xlink"></use></svg></a></li>
-      </ul>
-    </div>
-  </div>
-  <div class="sections compact hidden">
-    <div class="left">
-      <h1 class="home-link"><a href="#home">BAM</a></h1>
-    </div>
-    <div class="right"><span class="button actionButton sidebarTrigger" data-sidebar-id="1"><svg><use xlink:href="#menu" xmlns:xlink="http://www.w3.org/1999/xlink"></use></svg></span></div>
-  </div>
-</nav>
-<!-- Sidebar -->
-<nav class="sidebar darkBlue" data-sidebar-id="1">
-  <div class="close"><svg><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#close"></use></svg></div>
-  <div class="content">
-    <a href="#home" class="logo">
-    BAM
-    </a>
-    <ul class="mainMenu uppercase">
-        <li><a href="#exhibition">Current Exhibition</a></li>
-        <li><a href="http://11-11studios.com/bam/2017%20TAE%20Entry%20Form.pdf" target="_blank">Call for Entries</a></li>
-        <li><a href="#contact">Contact</a></li>>
-    </ul>
-    <ul class="social">
-      <li><a href="https://www.facebook.com/Beeville-Art-Museum-103515313030905/"><svg><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#facebook"></use></svg></a></li>
-    </ul>
-  </div>
-</nav>
-<!--home-->
-<section class="slide fade-5" data-name="home">
+<section class="slide fade whiteSlide fromLeft">
   <div class="content">
     <div class="container">
       <div class="wrap">
       
         <div class="fix-12-12">
-          <ul class="flex fixedSpaces verticalCenter reverse">
-            <li class="col-7-12 left middle">
-              <h1 class="big ae-1 fromLeft">Beeville Art Museum</h1>
-              <div class="ae-2 fromLeft"><p class="hero">Our site is currently being rebuilt. We apologize for any inconvenience. Visit us again soon. <br><br>We are currently accepting submissions for the 2017 Texas Artist Exhibition. <em>*The deadline for submission is June 1, 2017</em></p></div>
-              <a class="button call-to-action white ae-3 fromCenter" href="http://11-11studios.com/bam/2017%20TAE%20Entry%20Form.pdf" target="_blank">
-                Download Form
-              </a>
+          <div class="fix-7-12 left toRight">
+            <h1 class="ae-1">{{ @root.data.title }}</h1>
+            <div class="ae-2">
+              <p>{{ @root.data.subtitle }}</p>
+            </div>
+            <a class="button pink crop ae-3">Start free trial</a>
+          </div>
+        </div>
+        
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+
+
+
+<section class="slide fade kenBurns">
+  <div class="content">
+    <div class="container">
+      <div class="wrap">
+      
+        <div class="fix-12-12">
+          <h1 class="ae-1 fromLeft margin-bottom-3">Look for a solution</h1>
+          <div class="popupTrigger clearBoth ae-2 fromRight" data-popup-id="89">
+            <span class="ae-5 fromCenter">
+              <span class="button play white button-89">
+                <svg><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#play"></use></svg>
+              </span>
+            </span>
+            <span class="text-89 uppercase">See Slides in action</span>
+          </div>
+          <ul class="flex later margin-top-4 left">
+            <li class="col-6-12 box-89">
+              <div class="quoteBubble ae-4 fromLeft">
+                <p class="cropBottom light">The critical distinction between a craftsman and an expert is what happens after a sufficient level of expertise has been achieved. The expert will do everything she can to remain wedded.</p>
+              </div>
+              <div class="quoteName ae-6 fromRight">John Connor<span class="quoteTitle">, Creative Director @Designmodo</span></div>
             </li>
-            
+            <li class="col-6-12">
+              <ul class="flex fromBottomRight fixedSpaces">
+                <li class="col-6-12 ae-6">
+                  <h3>Mockup</h3>
+                  <p class="small">Select premade adjustment layers with ease.</p>
+                </li>
+                <li class="col-6-12 ae-7">
+                  <h3>Layers</h3>
+                  <p class="small">Open a smart object, paste your design and save.</p>
+                </li>
+                <li class="col-6-12 ae-8">
+                  <h3>Branding</h3>
+                  <p class="small">Select a background, drop items that you like.</p>
+                </li>
+                <li class="col-6-12 ae-9">
+                  <h3>Present</h3>
+                  <p class="small">Create items by pasting your design, text or logo.</p>
+                </li>
+                
+              </ul>
+            </li>
           </ul>
         </div>
-                
+        
       </div>
     </div>
   </div>
   <div class="background" style="background-image:url(assets/img/bam-background.jpg)"></div>
 </section>
-<!--exhbition-->
-<section class="slide whiteSlide current-exhibtion" data-name="exhibition">
+
+<!-- Popup Video -->
+<div class="popup autoplay" data-popup-id="89">
+  <div class="close"><svg><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#close"></use></svg></div>
   <div class="content">
     <div class="container">
       <div class="wrap">
-          <div class="fix-12-12">
-          <ul class="flex verticalCenter reverse">
-            <li class="col-6-12 left">
-              <h1 class="ae-2">Historias Sin Palabras / Stories Without Words</h1>
-              <div class="ae-3"><p>Works by Joe Lopez</p></div>
-              <ul class="flex grid-62 later">
-                <li class="col-6-12 ae-4">
-                  <h3>Currently on view through July 21, 2017</h3>
-                </li>
-              </ul>
-            </li>
-            <li class="col-6-12 left ae-1">
-              <div class="verticalCenter center">
-                <img class="exhibition-image" src="assets/img/ElConeHeadGallo.png"  width="549" alt="El Cone Head Gallo"/>
-              </div>
-            </li>
-          </ul>
+        <div class="fix-10-12">
+          <div class="embedVideo popupContent">
+            <iframe src="https://player.vimeo.com/video/101231747?color=ff0179&portrait=0" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+          </div>
         </div>
       </div>
     </div>
   </div>
-</section>
-<!--contact-->
-<section class="slide whiteSlide contact" data-name="contact">
-  <div class="content">
-    <div class="container">
-      <div class="wrap">
+</div>
 
-        <div class="fix-8-12">
-        <div class="grid">
-          <div class="col-4-12 ae-1">
-            <h3>Beeville Art Museum</h3>
-            <p>
-              401 E. Fannin
-              <br>
-              Beeville, Texas 78102
-              <br>
-              361.358.8615
-            </p>
+  <section class="slide whiteSlide">
+    <div class="content">
+      <div class="container">
+        <div class="wrap">
+        
+          <div class="fix-10-12 frame-94 ae-1">
+            <div class="ae-2"><p class="cropBottom inline">Get started. Everything to get you up and running.</p><br><a href="#" class="button button-94 pink ae-3 middle">Start free trial</a></div>
           </div>
-
-          <div class="col-4-12 ae-2">
-            <h3>Contact</h3>
-            <p>
-              <a href="mailto:BarnhartFoundation@gmail.com">Tracy Saucier, Director</a>
-              <br><br>
-              <a href="mailto:Education@BAMTexas.org">Crystal Farris<br> Associate Director - Education</a>
-              <br><br>
-              <a href="mailto:Operations@BAMTexas.org">Corlie Weed<br> Associate Director - Operations</a>
-            </p>
-          </div>
-
-          <div class="col-4-12 ae-1">
-            <h3>Hours</h3>
-            <p>
-              M-F 9:00 am - 5:00 pm
-              <br>
-              Saturday 10 am - 2 pm
-              <br>
-              Sunday Closed
-            </p>
-          </div>
-
-          <div class="col-12-12">
-            <li class="col-12-12 ae-4">
-              
-              <h3 class="margin-bottom-1">Stay in touch</h3>
-              <ul class="social-circles">
-                <li>
-                  <a class="button roundButton facebook" href="https://www.facebook.com/Beeville-Art-Museum-103515313030905/">
-                    <svg>
-                      <use xlink:href="#facebook" xmlns:xlink="http://www.w3.org/1999/xlink"></use>
-                    </svg>
-                  </a>
-                </li>
-              </ul>
-            </li>
-          </div>
+                  
         </div>
-        </div>
-
-
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
 
-
-
-<section class="slide whiteSlide contact" data-name="calendar">
-  <div class="content">
-    <div class="container">
-      <div class="wrap">
-
-
-        <div id='calendar'></div>
-
+  
+  <section class="slide fade whiteSlide">
+    <div class="content">
+      <div class="container">
+        <div class="wrap">
+        
+          <div class="fix-6-12">
+            <div class="ae-1"><p class="hero opaque">In a meat-eating world, wearing leather for shoes and even clothes.</p></div>
+            <a href="#" class="margin-top-2 button button-93 big pink ae-2">Purchase</a>
+            <div class="ae-3 margin-top-2"><p class="phone-93 opaque">or call<a class="bold block opaque" href="tel:+18187652309">+1 (818) 765-23-09</a></p></div>
+          </div>
+                  
+        </div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- Preloader -->
-<div class="loadingIcon"><svg class="loading-icon" id="loading-circle" viewBox="0 0 18 18"><circle class="circle" opacity=".1" stroke="#fff" stroke-width="2" stroke-miterlimit="10" cx="9" cy="9" r="8" fill="none"></circle><circle class="dash" stroke-width="2" stroke-linecap="round" stroke-miterlimit="10" stroke-dasharray="1,100" cx="9" cy="9" r="8" fill="none"></circle></svg></div>
+
+  <!-- Preloader -->
+  <div class="loadingIcon"><svg class="loading-icon" id="loading-circle" viewBox="0 0 18 18"><circle class="circle" opacity=".1" stroke="#fff" stroke-width="2" stroke-miterlimit="10" cx="9" cy="9" r="8" fill="none"></circle><circle class="dash" stroke-width="2" stroke-linecap="round" stroke-miterlimit="10" stroke-dasharray="1,100" cx="9" cy="9" r="8" fill="none"></circle></svg></div>
 
   <!-- Scripts -->
-  <script src='fc/lib/moment.min.js'></script>
   <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
-  <script src="js/slides.min.js" type="text/javascript" name="main-scripts"></script>
-  <script src='fc/fullcalendar.min.js'></script>
-  <script src='fc/gcal.min.js'></script>
-
- 
-    <script>
-
-	$(document).ready(function() {
-	
-		$('#calendar').fullCalendar({
-
-			header: {
-				left: 'prev,next today',
-				center: 'title',
-				right: 'month,agendaWeek,agendaDay,listMonth'
-			},
-
-			displayEventTime: false, // don't show the time column in list view
-
-			// THIS KEY WON'T WORK IN PRODUCTION!!!
-			// To make your own Google API key, follow the directions here:
-			// http://fullcalendar.io/docs/google_calendar/
-			googleCalendarApiKey: 'AIzaSyB2iPQxADBHHvJ0vLz-4MQNn62jAFEoaIc',
-		
-			// US Holidays
-			events: 'drinkhorchata@gmail.com',
+  <script src="js/main.min.js" type="text/javascript" name="main-scripts"></script>
 			
-			eventClick: function(event) {
-				// opens events in a popup window
-				window.open(event.url, 'gcalevent', 'width=700,height=600');
-				return false;
-			},
-			
-			loading: function(bool) {
-				$('#loading').toggle(bool);
-			}
-			
-		});
-		
-	});
-
-
-    </script>					
 	</body>
 </html>
