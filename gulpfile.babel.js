@@ -37,8 +37,8 @@ gulp.task('scripts', function () {
   return gulp.src([
     /* Add your JS files here, they will be combined in this order */
     // 'js/vendor/jquery-1.11.1.js',
-    'js/slides.min.js',
-    'js/custom.js'
+    './src/js/slides.min.js',
+    '.src/js/custom.js'
   ])
     .pipe(concat('main.js'))
     .pipe(gulp.dest('js'))
@@ -49,25 +49,16 @@ gulp.task('scripts', function () {
 
 /* Sass task */
 gulp.task('sass', function () {  
-  gulp.src('scss/slides.scss')
+  gulp.src('./src/scss/slides.scss')
     .pipe(sourcemaps.init())
     .pipe(plumber())
     .pipe(sass().on('error', sass.logError))
     .pipe(rename('styles.css'))
     .pipe(cleanCSS({compatibility: 'ie8'}))
     .pipe(sourcemaps.write())
-    .pipe(gulp.dest('css'))
+    .pipe(gulp.dest('./dist/css'))
     /* Reload the browser CSS after every change */
     .pipe(reload({stream:true}));
-});
-
-gulp.task('sass:prod', function () {  
-  gulp.src('scss/slides.scss')
-    .pipe(plumber())
-    .pipe(sass().on('error', sass.logError))
-    .pipe(rename('styles.css'))
-    .pipe(cleanCSS({compatibility: 'ie8'}))
-    .pipe(gulp.dest('css'))
 });
 
 /* Reload task */
