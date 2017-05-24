@@ -30,7 +30,9 @@ gulp.task('hbs', () => {
       helpers: './src/views/helpers/*.js',
       data: './src/data/**/*.{js,json}'
     }))
-    .pipe(gulp.dest('./dist/'));
+    .pipe(gulp.dest('./dist/'))
+    /* Reload the browser CSS after every change */
+    .pipe(reload({stream:true}));
 });
 
 gulp.task('scripts', function () {
@@ -44,6 +46,8 @@ gulp.task('scripts', function () {
     .pipe(rename({suffix: '.min'}))
     .pipe(uglify())
     .pipe(gulp.dest('./dist/js'))
+    /* Reload the browser CSS after every change */
+    .pipe(reload({stream:true}));
 });
 
 /* Sass task */
@@ -56,6 +60,14 @@ gulp.task('sass', function () {
     .pipe(cleanCSS({compatibility: 'ie8'}))
     .pipe(sourcemaps.write())
     .pipe(gulp.dest('./dist/css'))
+    /* Reload the browser CSS after every change */
+    .pipe(reload({stream:true}));
+});
+
+gulp.task('assets', () => {
+  gulp.src('./src/assets/**/*')
+    .pipe(plumber())
+    .pipe(gulp.dest('./dist/assets'))
     /* Reload the browser CSS after every change */
     .pipe(reload({stream:true}));
 });
