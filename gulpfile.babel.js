@@ -13,18 +13,20 @@ import concat from 'gulp-concat';
 import plumber from 'gulp-plumber';
 import browserSync from 'browser-sync';
 const reload = browserSync.reload;
+import rsync from 'rsyncwrapper';
+import gutil from 'gulp-util';
+import ghPages from 'gulp-gh-pages';
+
 
 /* Init task */
-gulp.task('init', function () {
-  return gulp.src(['scss/slides.scss'])
-    .pipe(concat('custom.scss'))
-    .pipe(gulp.dest('custom/'));
-});
+gulp.task('build', ['sass', 'hbs', 'scripts', 'assets']);
+
 
 /* Handllebars */
 gulp.task('hbs', () => {
   return gulp
     .src('./src/views/**/*.html')
+    .pipe(plumber())
     .pipe(hb({
       partials: './src/views/partials/**/*.hbs',
       helpers: './src/views/helpers/*.js',
@@ -35,13 +37,14 @@ gulp.task('hbs', () => {
     .pipe(reload({stream:true}));
 });
 
-gulp.task('scripts', function () {
+gulp.task('scripts', () => {
   return gulp.src([
     /* Add your JS files here, they will be combined in this order */
     // 'js/vendor/jquery-1.11.1.js',
     './src/js/slides.min.js',
     './src/js/custom.js'
   ])
+    .pipe(plumber())
     .pipe(concat('main.js'))
     .pipe(rename({suffix: '.min'}))
     .pipe(uglify())
@@ -51,8 +54,8 @@ gulp.task('scripts', function () {
 });
 
 /* Sass task */
-gulp.task('sass', function () {  
-  gulp.src('./src/scss/slides.scss')
+gulp.task('sass', () => {
+  return gulp.src('./src/scss/slides.scss')
     .pipe(sourcemaps.init())
     .pipe(plumber())
     .pipe(sass().on('error', sass.logError))
@@ -65,7 +68,7 @@ gulp.task('sass', function () {
 });
 
 gulp.task('assets', () => {
-  gulp.src('./src/assets/**/*')
+  return gulp.src('./src/assets/**/*')
     .pipe(plumber())
     .pipe(gulp.dest('./dist/assets'))
     /* Reload the browser CSS after every change */
@@ -73,27 +76,20 @@ gulp.task('assets', () => {
 });
 
 /* Reload task */
-gulp.task('bs-reload', function () {
+gulp.task('bs-reload', () => {
   browserSync.reload();
 });
 
 /* Prepare Browser-sync for localhost */
-gulp.task('browser-sync', function () {
+gulp.task('browser-sync', () => {
   browserSync.init(['css/*.css', 'js/*.js'], {
-      /*
-      I like to use a vhost, WAMP guide: https://www.kristengrote.com/blog/articles/how-to-set-up-virtual-hosts-using-wamp, XAMP guide: http://sawmac.com/xampp/virtualhosts/
-      */
-      // proxy: 'your_dev_site.url'
-      /* For a static server you would use this: */
-      
-      server: {
-          baseDir: './'
-      }
-      
+    server: {
+      baseDir: './'
+    }      
   });
 });
 
-gulp.task('serve', function () {
+gulp.task('serve', () => {
   browserSync.init({
     server: {
       baseDir: './dist'
@@ -107,9 +103,39 @@ gulp.task('watch', () => {
   gulp.watch(['./src/scss/*.scss', './src/scss/**/*.scss'], ['sass'])
   /* Watch app.js file, run the scripts task on change. */
   gulp.watch(['./src/js/custom.js'], ['scripts'])
+  /* Watch assets files, run the assets task on change. */
+  gulp.watch(['./src/assets/**/*'], ['assets'])
   /* Watch .html files, run the bs-reload task on change. */
   gulp.watch(['./src/views/**/*'], ['hbs', 'bs-reload']);
 })
 
 /* Watch scss, js and html files, doing different things with each. */
-gulp.task('default', ['sass', 'watch', 'serve']);
+gulp.task('default', ['build', 'watch', 'serve']);
+
+
+
+// Deployment tasks
+gulp.task('deploy', () => {
+  deploySite(process.argv[3]);
+});
+
+const deploySite = (deploymentEnv) => {
+  if (deploymentEnv === '--prod') {
+    rsync({
+      ssh: true,
+      src: './dist/',
+      dest: process.argv[4],
+      recursive: true,
+      syncDest: true,
+      args: ['--verbose']
+    },
+    (erro, stdout, stderr, cmd) => {
+        gutil.log(stdout);
+    });
+  }
+
+  if (deploymentEnv === '--dev') {
+    gulp.src('./dist/**/*')
+      .pipe(ghPages());
+  }
+}

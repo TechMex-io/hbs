@@ -16,6 +16,7 @@
     "gulp": "^3.9.1",
     "gulp-clean-css": "^3.0.4",
     "gulp-concat": "^2.6.1",
+    "gulp-gh-pages": "^0.5.4",
     "gulp-hb": "^6.0.2",
     "gulp-minify-css": "^1.2.4",
     "gulp-notify": "^3.0.0",
@@ -24,6 +25,8 @@
     "gulp-sass": "^3.1.0",
     "gulp-sourcemaps": "^2.6.0",
     "gulp-uglify": "^2.1.2",
-    "imagemin": "^5.2.2"
+    "gulp-util": "^3.0.8",
+    "imagemin": "^5.2.2",
+    "rsyncwrapper": "^2.0.1"
   }
 }
