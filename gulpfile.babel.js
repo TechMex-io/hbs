@@ -143,7 +143,7 @@ const deploySite = (deploymentEnv) => {
 
   if (deploymentEnv === '--ftp') {
     var conn = VinylFtp.create({
-      host: 'bam.tech-mex.io',
+      host: process.env.HOST,
       user: process.env.USERNAME,
       password: process.env.PASS,
       parallel: 10,
