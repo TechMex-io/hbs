@@ -17,4 +17,6 @@ $ npm install
 
 `gulp deploy --dev` This task will deploy the site to a `gh-pages` on your github repo branch and make the site available for view. As an example, you can view this repo's site at https://techmex-io.github.io/hbs/
 
-`gulp deploy --prod user@hostname:/path/to/www` This task takes a second parameter, `user@hostname:/path/to/www` to connect to ftp via ssh. You will need your ssh username and the path to the directory where you want the site hosted. You will be asked to type in your password.
+`gulp deploy --prod` This task connects to ftp via ssh. You will need your ssh username and the path to the directory where you want the site hosted in a `.env` file. You will be prompted for your password via the cli.
+
+`gulp deploy --ftp` This task connects via ftp and transmits files to the host. Username, password and host must be saved in `.env` file. **Note** This process will take longer than the ssh method above.
