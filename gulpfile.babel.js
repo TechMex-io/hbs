@@ -29,11 +29,16 @@ gulp.task('hbs', () => {
   return gulp
     .src('./src/views/**/*.html')
     .pipe(plumber())
-    .pipe(hb({
-      partials: './src/views/partials/**/*.hbs',
-      helpers: './src/views/helpers/*.js',
-      data: './src/data/**/*.{js,json}'
-    }))
+    .pipe(
+      hb({
+        partials: './src/views/partials/**/*.hbs',
+        helpers: './src/views/helpers/*.js',
+        data: './src/data/**/*.{js,json}'
+      })
+      .data({
+        baseurl: '/'
+      })
+  )
     .pipe(gulp.dest('./dist/'))
     /* Reload the browser CSS after every change */
     .pipe(reload({stream:true}));
