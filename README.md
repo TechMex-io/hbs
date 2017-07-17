@@ -20,3 +20,20 @@ $ npm install
 `gulp deploy --prod` This task connects to ftp via ssh. You will need your ssh username and the path to the directory where you want the site hosted in a `.env` file. You will be prompted for your password via the cli.
 
 `gulp deploy --ftp` This task connects via ftp and transmits files to the host. Username, password and host must be saved in `.env` file. **Note** This process will take longer than the ssh method above.
+
+
+### Dev
+To deploy and test your site in dev:
+* make sure to checkout a `dev` branch
+* make sure the `dev` branch is updated with the latest `master` branch. You can do this by checking out `dev` and running the following commands:
+```
+$ git fetch
+$ git rebase master
+```
+* Change the `baseurl` property in the gulpfile to the base url of the Tech-Mex repo in which you are working. (e.g. https://techmex-io.github.io/REPO-NAME-HERE)
+* Next, merge your feature branch into `dev` to make sure there are no conflicts or issues pushing your changes into master:
+```
+$ git merge your-feature-branch
+```
+* Commit your changes and push to `dev`
+* Run the dev deploy command: `gulp deploy --dev`
