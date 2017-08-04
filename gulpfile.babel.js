@@ -17,6 +17,7 @@ import rsync from 'rsyncwrapper';
 import gutil from 'gulp-util';
 import ghPages from 'gulp-gh-pages';
 import VinylFtp from 'vinyl-ftp';
+import surge from 'surge';
 import {config} from 'dotenv';
 config();
 
@@ -123,12 +124,12 @@ gulp.task('default', ['build', 'watch', 'serve']);
 
 // Deployment tasks
 gulp.task('deploy', () => {
-  deploySite(process.argv[3]);
+  return deploySite(process.argv[3]);
 });
 
 const deploySite = (deploymentEnv) => {
   if (deploymentEnv === '--prod') {
-    rsync({
+    return rsync({
       ssh: true,
       src: './dist/',
       dest: process.env.SSH,
@@ -142,23 +143,41 @@ const deploySite = (deploymentEnv) => {
   }
 
   if (deploymentEnv === '--dev') {
-    gulp.src('./dist/**/*')
+    return gulp.src('./dist/**/*')
       .pipe(ghPages());
   }
 
   if (deploymentEnv === '--ftp') {
-    var conn = VinylFtp.create({
+    const conn = VinylFtp.create({
       host: process.env.HOST,
       user: process.env.USERNAME,
       password: process.env.PASS,
       parallel: 10,
       log: gutil.log
     });
-    var globs = [
+    const globs = [
       './dist/**/*'
     ];
-    gulp.src(globs, {base: './dist', buffer: false})
+    return gulp.src(globs, {base: './dist', buffer: false})
       .pipe(conn.newer('/'))
       .pipe(conn.dest('/'));
   }
+
+  if (deploymentEnv === '--surge') {
+    console.log(deploymentEnv)
+    return surge({
+      project: './dist',         // Path to your static build directory
+      domain: 'detailed-stage.surge.sh'  // Your domain or Surge subdomain
+    });
+  }
 }
+
+
+
+gulp.task('surg', function () {
+  console.log(surge)
+  return surge({
+    project: './disto',         // Path to your static build directory
+    domain: 'detailed-stage.surge.sh'  // Your domain or Surge subdomain
+  });
+})

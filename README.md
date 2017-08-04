@@ -21,6 +21,8 @@ $ npm install
 
 `gulp deploy --ftp` This task connects via ftp and transmits files to the host. Username, password and host must be saved in `.env` file. **Note** This process will take longer than the ssh method above.
 
+`gulp deploy --surge`
+
 
 ### Dev
 To deploy and test your site in dev:
