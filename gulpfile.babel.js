@@ -83,6 +83,17 @@ gulp.task('assets', () => {
     .pipe(reload({stream:true}));
 });
 
+
+/* Create directory with index file */
+gulp.task('dir', () => {
+  let dir = process.argv[3].replace(/^-+/, "");
+  let fs = require('fs');
+  fs.mkdirSync(`./src/views/${dir}`);
+  fs.writeFileSync(`./src/views/${dir}/index.html`);
+});
+
+/* Create file */
+
 /* Reload task */
 gulp.task('bs-reload', () => {
   browserSync.reload();
