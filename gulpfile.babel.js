@@ -97,8 +97,7 @@ gulp.task('page', () => {
   let path = process.argv[3].replace(/^-+/, "");
   let file = path.substr(path.lastIndexOf('/') + 1) + '.html'; // find word after last / and append .html
   let dir = path.replace(file, '');
-  fs.writeFileSync('./src/views/'+dir + file);
-  console.log(path, dir, file);
+  fs.writeFileSync(`./src/views/${dir}${file}`);
 });
 
 /* Reload task */
