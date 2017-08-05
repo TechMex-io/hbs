@@ -11,6 +11,7 @@ import notify from 'gulp-notify';
 import cleanCSS from 'gulp-clean-css';
 import concat from 'gulp-concat';
 import plumber from 'gulp-plumber';
+import fs from 'fs';
 import browserSync from 'browser-sync';
 const reload = browserSync.reload;
 import rsync from 'rsyncwrapper';
@@ -87,12 +88,18 @@ gulp.task('assets', () => {
 /* Create directory with index file */
 gulp.task('dir', () => {
   let dir = process.argv[3].replace(/^-+/, "");
-  let fs = require('fs');
   fs.mkdirSync(`./src/views/${dir}`);
   fs.writeFileSync(`./src/views/${dir}/index.html`);
 });
 
 /* Create file */
+gulp.task('page', () => {
+  let path = process.argv[3].replace(/^-+/, "");
+  let file = path.substr(path.lastIndexOf('/') + 1) + '.html'; // find word after last / and append .html
+  let dir = path.replace(file, '');
+  fs.writeFileSync('./src/views/'+dir + file);
+  console.log(path, dir, file);
+});
 
 /* Reload task */
 gulp.task('bs-reload', () => {
