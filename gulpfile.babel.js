@@ -10,6 +10,7 @@ import rename from 'gulp-rename';
 import notify from 'gulp-notify';
 import cleanCSS from 'gulp-clean-css';
 import concat from 'gulp-concat';
+import frontMatter from 'gulp-front-matter';
 import plumber from 'gulp-plumber';
 import fs from 'fs';
 import browserSync from 'browser-sync';
@@ -31,6 +32,9 @@ gulp.task('hbs', () => {
   return gulp
     .src('./src/views/**/*.html')
     .pipe(plumber())
+    .pipe(frontMatter({
+            property: 'page'
+        }))
     .pipe(
       hb({
         partials: './src/views/partials/**/*.hbs',
@@ -85,11 +89,12 @@ gulp.task('assets', () => {
 });
 
 
+const fileContent = '{{> head}}\n\n{{> svg-lib}}\n\n  <!--all content here  -->\n\n{{> footer }}';
 /* Create directory with index file */
 gulp.task('dir', () => {
   let dir = process.argv[3].replace(/^-+/, "");
   fs.mkdirSync(`./src/views/${dir}`);
-  fs.writeFileSync(`./src/views/${dir}/index.html`);
+  fs.writeFileSync(`./src/views/${dir}/index.html`, fileContent);
 });
 
 /* Create file */
@@ -97,7 +102,7 @@ gulp.task('page', () => {
   let path = process.argv[3].replace(/^-+/, "");
   let file = path.substr(path.lastIndexOf('/') + 1) + '.html'; // find word after last / and append .html
   let dir = path.replace(file, '');
-  fs.writeFileSync(`./src/views/${dir}${file}`);
+  fs.writeFileSync(`./src/views/${dir}${file}`, fileContent);
 });
 
 /* Reload task */
