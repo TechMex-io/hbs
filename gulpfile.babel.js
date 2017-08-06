@@ -22,12 +22,14 @@ import VinylFtp from 'vinyl-ftp';
 import surge from 'surge';
 import {config} from 'dotenv';
 config();
-
 // set file contents
 const fileContent = '{{> head}}\n\n{{> svg-lib}}\n\n  <!--all content here  -->\n\n{{> footer }}';
 
+
 /* Init task */
 gulp.task('build', ['sass', 'hbs', 'scripts', 'assets']);
+
+
 
 
 /* Handllebars */
@@ -53,6 +55,10 @@ gulp.task('hbs', () => {
     .pipe(reload({stream:true}));
 });
 
+
+
+
+/* JS task  */
 gulp.task('scripts', () => {
   return gulp.src([
     /* Add your JS files here, they will be combined in this order */
@@ -69,6 +75,9 @@ gulp.task('scripts', () => {
     .pipe(reload({stream:true}));
 });
 
+
+
+
 /* Sass task */
 gulp.task('sass', () => {
   return gulp.src('./src/scss/slides.scss')
@@ -83,6 +92,10 @@ gulp.task('sass', () => {
     .pipe(reload({stream:true}));
 });
 
+
+
+
+/* Move assets */
 gulp.task('assets', () => {
   return gulp.src('./src/assets/**/*')
     .pipe(plumber())
@@ -93,12 +106,16 @@ gulp.task('assets', () => {
 
 
 
+
 /* Create directory with index file */
 gulp.task('dir', () => {
   let dir = process.argv[3].replace(/^-+/, "");
   fs.mkdirSync(`./src/views/${dir}`);
   fs.writeFileSync(`./src/views/${dir}/index.html`, fileContent);
 });
+
+
+
 
 /* Create file */
 gulp.task('page', () => {
@@ -107,6 +124,9 @@ gulp.task('page', () => {
     let dir = path.replace(file, '');
     fs.writeFileSync(`./src/views/${dir}${file}.html`, fileContent);
 });
+
+
+
 
 /* Reload task */
 gulp.task('bs-reload', () => {
@@ -131,6 +151,9 @@ gulp.task('serve', () => {
 });
 
 
+
+
+
 gulp.task('watch', () => {
   /* Watch scss, run the sass task on change. */
   gulp.watch(['./src/scss/*.scss', './src/scss/**/*.scss'], ['sass'])
@@ -142,8 +165,12 @@ gulp.task('watch', () => {
   gulp.watch(['./src/views/**/*'], ['hbs', 'bs-reload']);
 })
 
-/* Watch scss, js and html files, doing different things with each. */
+/* Default task */
 gulp.task('default', ['build', 'watch', 'serve']);
+
+
+
+
 
 
 
@@ -199,7 +226,7 @@ const deploySite = (deploymentEnv) => {
 
 
 
-gulp.task('surg', function () {
+gulp.task('surge', function () {
   console.log(surge)
   return surge({
     project: './disto',         // Path to your static build directory
