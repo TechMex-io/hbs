@@ -23,6 +23,9 @@ import surge from 'surge';
 import {config} from 'dotenv';
 config();
 
+// set file contents
+const fileContent = '{{> head}}\n\n{{> svg-lib}}\n\n  <!--all content here  -->\n\n{{> footer }}';
+
 /* Init task */
 gulp.task('build', ['sass', 'hbs', 'scripts', 'assets']);
 
@@ -89,7 +92,7 @@ gulp.task('assets', () => {
 });
 
 
-const fileContent = '{{> head}}\n\n{{> svg-lib}}\n\n  <!--all content here  -->\n\n{{> footer }}';
+
 /* Create directory with index file */
 gulp.task('dir', () => {
   let dir = process.argv[3].replace(/^-+/, "");
@@ -99,10 +102,10 @@ gulp.task('dir', () => {
 
 /* Create file */
 gulp.task('page', () => {
-  let path = process.argv[3].replace(/^-+/, "");
-  let file = path.substr(path.lastIndexOf('/') + 1) + '.html'; // find word after last / and append .html
-  let dir = path.replace(file, '');
-  fs.writeFileSync(`./src/views/${dir}${file}`, fileContent);
+    let path = process.argv[3].replace(/^-+/, "");
+    let file = path.substr(path.lastIndexOf('/') + 1); // find word after last / and append .html
+    let dir = path.replace(file, '');
+    fs.writeFileSync(`./src/views/${dir}${file}.html`, fileContent);
 });
 
 /* Reload task */
