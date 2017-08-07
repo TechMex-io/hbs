@@ -118,26 +118,6 @@ gulp.task('assets', () => {
 
 
 
-/* Create directory with index file */
-gulp.task('dir', () => {
-  let dir = process.argv[3].replace(/^-+/, "");
-  fs.mkdirSync(`./src/views/${dir}`);
-  fs.writeFileSync(`./src/views/${dir}/index.html`, fileContent);
-});
-
-
-
-
-/* Create file */
-gulp.task('page', () => {
-    let template = process.argv[3].replace(/^-+/, "");
-    let path = process.argv[4];
-    let file = path.substr(path.lastIndexOf('/') + 1); // find word after last /
-    let dir = path.replace(file, '');
-    fs.writeFileSync(`./src/views/${dir}${file}.html`, templates[`${template}.hbs`]);
-});
-
-
 
 
 /* Reload task */
@@ -181,6 +161,31 @@ gulp.task('watch', () => {
 gulp.task('default', ['build', 'watch', 'serve']);
 
 
+
+
+
+/* Create directory with index file */
+gulp.task('dir', () => {
+  let dir = process.argv[3].replace(/^-+/, "");
+  fs.mkdirSync(`./src/views/${dir}`);
+  fs.writeFileSync(`./src/views/${dir}/index.html`, fileContent);
+});
+
+
+
+
+/* Create file */
+gulp.task('page', () => {
+    let template = process.argv[3].replace(/^-+/, "");
+    let path = process.argv[4];
+    let file = path.substr(path.lastIndexOf('/') + 1); // find word after last /
+    let dir = path.replace(file, '');
+    if (template) {
+      fs.writeFileSync(`./src/views/${dir}${file}.html`, templates[`${template}.hbs`]);
+    } else {
+      fs.writeFileSync(`./src/views/${dir}${file}.html`, fileContent);
+    }
+});
 
 
 
