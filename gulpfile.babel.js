@@ -22,9 +22,20 @@ import VinylFtp from 'vinyl-ftp';
 import surge from 'gulp-surge';
 import {config} from 'dotenv';
 config();
-// set file contents
-const fileContent = '{{> head}}\n\n{{> svg-lib}}\n\n  <!--all content here  -->\n\n{{> footer }}';
 
+
+/* Set file contents */
+const fileContent = '{{> head}}\n\n{{> svg-lib}}\n\n  <!--all content here  -->\n\n{{> footer }}';
+let templateFileNames;
+let templates = [];
+templateFileNames = fs.readdirSync('./src/views/templates');
+templateFileNames.map(function (file) {
+  return templates[file] = fs.readFileSync(`./src/views/templates/${file}`);
+});
+
+gulp.task('templates', function () {
+  console.log(templates);
+});
 
 /* Init task */
 gulp.task('build', ['sass', 'hbs', 'scripts', 'assets']);
@@ -119,10 +130,11 @@ gulp.task('dir', () => {
 
 /* Create file */
 gulp.task('page', () => {
-    let path = process.argv[3].replace(/^-+/, "");
-    let file = path.substr(path.lastIndexOf('/') + 1); // find word after last / and append .html
+    let template = process.argv[3].replace(/^-+/, "");
+    let path = process.argv[4];
+    let file = path.substr(path.lastIndexOf('/') + 1); // find word after last /
     let dir = path.replace(file, '');
-    fs.writeFileSync(`./src/views/${dir}${file}.html`, fileContent);
+    fs.writeFileSync(`./src/views/${dir}${file}.html`, templates[`${template}.hbs`]);
 });
 
 

@@ -21,7 +21,7 @@ $ npm install
 
 `gulp deploy --ftp` This task connects via ftp and transmits files to the host. Username, password and host must be saved in `.env` file. **Note** This process will take longer than the ssh method above.
 
-`gulp deploy --surge`
+`gulp deploy --surge`Make sure you have added the domain name under the `domain` property under the `surge` gulp task. Once done, run this gulp task to deploy.
 
 
 ### Dev
@@ -39,3 +39,15 @@ $ git merge your-feature-branch
 ```
 * Commit your changes and push to `dev`
 * Run the dev deploy command: `gulp deploy --dev`
+
+
+### Templates
+Create a template, e.g. one-column.hbs, blog-post.hbs, etc., in the `views/templates` directory. All partials work in the template files.
+
+When you want to create a new page, run `gulp page --name-of-template name-of-page` and that will create a page based off your template ready for content. For example, you can run
+```
+$ gulp page --blog-post blog/my-first-post
+```
+This will use the `blog-post.hbs` template file inside the `templates` directory and create a new file named `my-first-post.html` inside the `blog` directory based off the template file. Note that if you want to create a file inside a directory, the directory needs to exist. Otherwise, it will result in error. To create a new directory, you can either create one with you text editor or run `gulp dir --name-of-dir`. You can also create subdirectories this way. The same rule applies for existing directories.
+
+
