@@ -1,4 +1,18 @@
 {
-  "title": "Heading lorem ipsum dolor sit amet, consectetur adipisicing elit.",
-  "subtitle": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Similique officia veritatis commodi, non, dolor nam odit ea illum, dignissimos enim accusamus amet reiciendis! Pariatur a quas nam, eum facilis optio."
+  "pages": {
+    "home": {
+      "title": "Home",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Similique officia veritatis commodi, non, dolor nam odit ea illum, dignissimos enim accusamus amet reiciendis! Pariatur a quas nam, eum facilis optio."
+    },
+    "about": {
+      "title": "About",
+      "description": "This is the about page. Lorem ipsum dolor sit amet.",
+      "img": "about.png"
+    },
+    "contact": {
+      "title": "Contact",
+      "description": "This is the contact page.",
+      "img": "contact.png"
+    }
+  }
 }

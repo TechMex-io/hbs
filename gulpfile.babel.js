@@ -19,7 +19,7 @@ import rsync from 'rsyncwrapper';
 import gutil from 'gulp-util';
 import ghPages from 'gulp-gh-pages';
 import VinylFtp from 'vinyl-ftp';
-import surge from 'surge';
+import surge from 'gulp-surge';
 import {config} from 'dotenv';
 config();
 // set file contents
@@ -223,13 +223,3 @@ const deploySite = (deploymentEnv) => {
     });
   }
 }
-
-
-
-gulp.task('surge', function () {
-  console.log(surge)
-  return surge({
-    project: './disto',         // Path to your static build directory
-    domain: 'detailed-stage.surge.sh'  // Your domain or Surge subdomain
-  });
-})
