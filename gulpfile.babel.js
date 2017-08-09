@@ -33,9 +33,6 @@ templateFileNames.map(function (file) {
   return templates[file] = fs.readFileSync(`./src/views/templates/${file}`);
 });
 
-gulp.task('templates', function () {
-  console.log(templates);
-});
 
 /* Init task */
 gulp.task('build', ['sass', 'hbs', 'scripts', 'assets']);
