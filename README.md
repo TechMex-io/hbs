@@ -15,6 +15,8 @@ $ npm install
 
 `gulp` This is the default gulp task that will launch the site and show your changes with live reload.
 
+`gulp min`This task simply minifies the html pages to add a little speed. Run this task before you deploy.
+
 `gulp deploy --dev` This task will deploy the site to a `gh-pages` on your github repo branch and make the site available for view. As an example, you can view this repo's site at https://techmex-io.github.io/hbs/
 
 `gulp deploy --prod` This task connects to ftp via ssh. You will need your ssh username and the path to the directory where you want the site hosted in a `.env` file. You will be prompted for your password via the cli.

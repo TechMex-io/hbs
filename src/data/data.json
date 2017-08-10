@@ -85,6 +85,12 @@
           "body": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptate, vel! Molestias culpa accusantium, a quos consequatur aut. Illo ratione laborum, maxime, sapiente aliquid, fugiat, maiores explicabo ipsum veniam incidunt dolor."
         }
       ]
+    },
+    "testing-page": {
+      "title": "Temp Title",
+      "description": "Temp Description",
+      "body": "<h1 id=\"static-api-starter-kit\">Static API Starter Kit</h1>\n<p>This is a starter kit to help you, generate a basic static API (Static JSON files). <a href=\"http://paulsalaets.com/posts/json-api-with-github-pages\">My buddy paul made a good writeup for using GitHub to serve a static API.</a> He makes a few good points, I thought I could take it a step further, and make a Jekyll-esq way of generating content, via Markdown.</p>\n<h2 id=\"what-you-re-looking-for\">What you’re looking for</h2>\n<p>All the good stuff you’re looking for is in the <code>gulpfile.js</code>. <strong>Part of using this is that you’re the one making new gulp tasks to build the static JSON files</strong> If you don’t know how to use gulp, then you don’t know how to use this… It makes heavy use of a markdown to JSON gulp plugin that generates your JSON while keeping your directory structure intact.</p>\n<p>In essence, you design your JSON requests around the directory structure of your markdown/images.</p>\n<h2 id=\"usage\">Usage</h2>\n<h3 id=\"install\">Install</h3>\n<p>I should have to tell you this, but use nvm (Node Version Manager).<br><code>nvm use</code><br><code>npm install -g gulp &amp;&amp; npm install</code></p>\n<h3 id=\"tasks\">Tasks</h3>\n<p>Only two meta tasks right now…</p>\n<h3 id=\"build\">Build</h3>\n<p><code>gulp build</code></p>\n<h3 id=\"watch\">Watch</h3>\n<p><code>gulp watch</code></p>\n<h3 id=\"page\">Page</h3>\n<p><code>gulp page --&quot;name of page&quot;</code></p>\n",
+      "updatedAt": "2017-08-10T05:32:03.000Z"
     }
   }
 }
