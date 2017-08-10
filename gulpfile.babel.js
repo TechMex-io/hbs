@@ -28,9 +28,9 @@ config();
 const fileContent = '{{> head}}\n\n{{> svg-lib}}\n\n  <!--all content here  -->\n\n{{> footer }}';
 let templateFileNames;
 let templates = [];
-templateFileNames = fs.readdirSync('./src/views/templates');
+templateFileNames = fs.readdirSync('./src/views/_templates');
 templateFileNames.map(function (file) {
-  return templates[file] = fs.readFileSync(`./src/views/templates/${file}`);
+  return templates[file] = fs.readFileSync(`./src/views/_templates/${file}`);
 });
 
 
@@ -50,8 +50,8 @@ gulp.task('hbs', () => {
         }))
     .pipe(
       hb({
-        partials: './src/views/partials/**/*.hbs',
-        helpers: './src/views/helpers/*.js',
+        partials: './src/views/_partials/**/*.hbs',
+        helpers: './src/views/_helpers/*.js',
         data: './src/data/**/*.{js,json}'
       })
       .data({

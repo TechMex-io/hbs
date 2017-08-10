@@ -1,0 +1,42 @@
+{{> head}}
+
+{{> svg-lib}}
+
+  <section class="slide fade whiteSlide fromLeft">
+    <div class="content">
+      <div class="container">
+        <div class="wrap">
+        
+          <div class="fix-12-12">
+            <div class="fix-7-12 left toRight">
+              <h1 class="ae-1">This is the blog</h1>
+              <div class="ae-2">
+               <ul>
+                {{#limiter @root.data.pages.blog.posts start=0 limit=5}}
+                  <li>
+                    {{ title }}
+                  </li>
+                {{/limiter}}
+              </ul> 
+            </div>
+              
+              
+            </div>
+          </div>
+          
+        </div>
+      </div>
+    </div>
+  </section>
+
+  
+
+  <ul>
+    {{#limiter @root.data.pages.blog.posts start=0 limit=5}}
+    <li>
+      {{ title }}
+    </li>
+    {{/limiter}}
+</ul> 
+
+{{> footer }}

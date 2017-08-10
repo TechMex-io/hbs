@@ -21,6 +21,13 @@ title: This is my title
               <p>
                 <a href="http://www.jsoneditoronline.org/">http://www.jsoneditoronline.org/</a>
               </p>
+               <ul>
+                {{#limiter @root.data.pages.blog.posts start=0 limit=5}}
+                  <li>
+                    {{ title }}
+                  </li>
+                {{/limiter}}
+              </ul> 
               
             </div>
           </div>
