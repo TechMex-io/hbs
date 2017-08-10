@@ -29,6 +29,5 @@ export const limiter = function (data, options) {
   // const posts = data.map(function (post) {
   //   return post;
   // })
-  console.log(html);
   return html.join('');
 }

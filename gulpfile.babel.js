@@ -7,7 +7,6 @@ import sass from 'gulp-sass';
 import sourcemaps from 'gulp-sourcemaps';
 import uglify from 'gulp-uglify';
 import rename from 'gulp-rename';
-import notify from 'gulp-notify';
 import cleanCSS from 'gulp-clean-css';
 import concat from 'gulp-concat';
 import frontMatter from 'gulp-front-matter';
@@ -17,6 +16,7 @@ import browserSync from 'browser-sync';
 const reload = browserSync.reload;
 import rsync from 'rsyncwrapper';
 import gutil from 'gulp-util';
+import htmlmin from 'gulp-htmlmin';
 import ghPages from 'gulp-gh-pages';
 import VinylFtp from 'vinyl-ftp';
 import surge from 'gulp-surge';
@@ -100,6 +100,15 @@ gulp.task('sass', () => {
     .pipe(reload({stream:true}));
 });
 
+
+
+
+/* Minify html */
+gulp.task('min', () => {
+  return gulp.src('dist/**/*.html')
+    .pipe(htmlmin({collapseWhitespace: true}))
+    .pipe(gulp.dest('dist'));
+});
 
 
 
