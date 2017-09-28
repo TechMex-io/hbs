@@ -53,3 +53,12 @@ $ gulp page --blog-post blog/my-first-post
 This will use the `blog-post.hbs` template file inside the `templates` directory and create a new file named `my-first-post.html` inside the `blog` directory based off the template file. Note that if you want to create a file inside a directory, the directory needs to exist. Otherwise, it will result in error. To create a new directory, you can either create one with you text editor or run `gulp dir --name-of-dir`. You can also create subdirectories this way. The same rule applies for existing directories.
 
 
+### SSH Deployment
+Your `.env` file should contain the following:
+
+```
+USERNAME=your-user-name
+PASS=your-password
+HOST=your.hostname.com
+SSH=user@sshhost:../your.hostname.com/www/
+```
